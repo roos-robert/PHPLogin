@@ -7,6 +7,9 @@ class HTMLView {
         echo "
 <!DOCTYPE html>
 <html>
+<head>
+    <title>PHPLogin</title>
+</head>
 <body>
 $body
 </body>
