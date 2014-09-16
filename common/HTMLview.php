@@ -9,6 +9,7 @@ class HTMLView {
 <html>
 <head>
     <title>PHPLogin</title>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8' />
 </head>
 <body>
 $body
