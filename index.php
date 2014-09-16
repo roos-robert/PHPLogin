@@ -1,11 +1,12 @@
 <?php
-
-require_once("common/HTMLView.php");
-
 session_start();
 
-$view = new HTMLView();
+require_once("common/HTMLView.php");
+require_once("src/controller/LoginController.php");
 
-$htmlBody = "test";
+$view = new HTMLView();
+$ctrl = new \controller\LoginController();
+
+$htmlBody = $ctrl->doLogin();
 
 $view->echoHTML($htmlBody);
