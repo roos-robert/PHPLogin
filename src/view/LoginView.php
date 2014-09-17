@@ -26,6 +26,11 @@ class LoginView {
         }
     }
 
+    public function getTime() {
+        setlocale(LC_ALL,"sv_SE.UTF8");
+        return strftime("%A, den %d %B år %Y. Klockan är [%X].");
+    }
+
     // Renders the page according to the user being logged in or not.
     public function showPage() {
         if($this->model->getActiveUser() == null)
@@ -44,7 +49,7 @@ class LoginView {
                     <input type='submit' value='Login' />
                  </fieldset>
             </form>
-            ";
+            " . $this->getTime();
         }
         else
         {
