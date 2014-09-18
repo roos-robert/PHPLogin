@@ -16,8 +16,21 @@ class LoginController {
     }
 
     public function doLogin() {
+        // If a user tries to login, the input is checked in the model.
+        if($this->view->onClickLogin())
+        {
+            // CHECK CREDENTIALS
+        }
 
-        // NOTE - Implement functionality to check if user wants to login, authenticate and set session or not.
-        return $this->view->showPage();
+        return $this->view->showPage("Yay! You have been logged in.");
+    }
+
+    public function doLogout() {
+        if ($this->view->onClickLogout() === true)
+        {
+            $this->model->doLogout();
+        }
+
+        return $this->view->showPage("You have with great success, logged out.");
     }
 }

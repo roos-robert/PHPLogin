@@ -10,19 +10,30 @@ class LoginView {
         $this->model = $model;
     }
 
+    // Checks if the user has pressed the login button.
     public function onClickLogin() {
-        // NOTE - Implement stuff.
-        if(isset($_GET["login"]))
+        if(isset($_POST["login"]))
         {
-            // NOTE - Check.
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
+    // Checks if the user has pressed the logout button.
     public function onClickLogout() {
-        // NOTE - Implement stuff.
         if(isset($_GET["logout"]))
         {
-            // NOTE - Check.
+            if(isset($_POST["logout"]))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 
@@ -33,11 +44,11 @@ class LoginView {
     }
 
     // Renders the page according to the user being logged in or not.
-    public function showPage() {
+    public function showPage($message) {
         if($this->model->getLoginStatus() === false)
         {
             return "
-            <h1>Welcome, please login</h1>
+            <h1>Welcome, please login $message</h1>
             <form action='?login' method='post' name='loginForm'>
                 <fieldset>
                     <legend>Enter your username and password</legend>
@@ -50,12 +61,12 @@ class LoginView {
                     <input type='submit' value='Login' />
                  </fieldset>
             </form>
-            <p></p>
-            " . $this->getTime();
+            <p>" . $this->getTime() . "</p>";
         }
         else
         {
-            return "<h1>Welcome USERNAME!</h1>";
+            return "<h1>Welcome!</h1>
+                    <p>$message</p>";
         }
     }
 }
