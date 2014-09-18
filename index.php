@@ -1,9 +1,10 @@
 <?php
+
+require_once(dirname(__FILE__) . "/common/HTMLview.php");
+require_once(dirname(__FILE__) . "/src/controller/LoginController.php");
+
 session_start();
-
-require_once(dirname(__FILE__)."/common/HTMLview.php");
-
-require_once("./src/controller/LoginController.php");
+$_SESSION["LoggedIn"] = null;
 
 $view = new HTMLView();
 $ctrl = new \controller\LoginController();

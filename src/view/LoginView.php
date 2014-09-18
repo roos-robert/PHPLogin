@@ -49,6 +49,7 @@ class LoginView {
                     <input type='submit' value='Login' />
                  </fieldset>
             </form>
+            <p></p>
             " . $this->getTime();
         }
         else
