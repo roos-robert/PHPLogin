@@ -26,6 +26,7 @@ class LoginView {
         }
     }
 
+    // Function for retrieving current time, date and year in Swedish.
     public function getTime() {
         setlocale(LC_ALL,"sv_SE.UTF8");
         return strftime("%A, den %d %B år %Y. Klockan är [%X].");
@@ -33,7 +34,7 @@ class LoginView {
 
     // Renders the page according to the user being logged in or not.
     public function showPage() {
-        if($this->model->getActiveUser() == null)
+        if($this->model->getLoginStatus() === false)
         {
             return "
             <h1>Welcome, please login</h1>
