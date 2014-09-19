@@ -8,6 +8,6 @@ session_start();
 $view = new HTMLView();
 $ctrl = new \controller\LoginController();
 
-$htmlBody = $ctrl->doLogin();
+$htmlBody = $ctrl->checkActions();
 
 $view->echoHTML($htmlBody);

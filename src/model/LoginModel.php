@@ -3,7 +3,7 @@
 namespace model;
 
 class LoginModel {
-    //private $sessionLocation = "LoginModel::LoggedIn";
+    private $sessionLocation = "LoggedIn";
 
     public function __construct() {
         // NOTE - implement stuff.
@@ -15,7 +15,7 @@ class LoginModel {
         {
             if($password == "Password")
             {
-                $_SESSION["LoggedIn"] = true;
+                $_SESSION[$this->sessionLocation] = true;
             }
             else
             {
@@ -32,12 +32,12 @@ class LoginModel {
 
     // When a user wants to logout, the session is returned to be null.
     public function doLogout() {
-        $_SESSION["LoggedIn"] = null;
+        $_SESSION[$this->sessionLocation] = null;
     }
 
     // Function for checking if a user is currently logged in or not.
     public function getLoginStatus() {
-        if($_SESSION["LoggedIn"] === null || $_SESSION["LoggedIn"] === false)
+        if(!(isset($_SESSION[$this->sessionLocation])) || $_SESSION[$this->sessionLocation] === false)
         {
             return false;
         }
