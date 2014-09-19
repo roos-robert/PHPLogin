@@ -70,6 +70,7 @@ class LoginController {
         // If a user tries to logout, the session is returned to null.
         elseif ($this->view->onClickLogout())
         {
+            $this->autoLogin->autoLoginCookieRemove();
             $this->model->doLogout();
             $this->messages->save("Du har nu loggat ut");
             header('Location: index.php');
