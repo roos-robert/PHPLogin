@@ -10,23 +10,21 @@ class LoginModel {
     }
 
     // Checks the credentials, if correct the LoggedIn session is set to true.
-    public function doLogin($username, $password) {
-        if($username == "Admin")
+    public function doLogin($username, $password, $token = "") {
+        if ($token == "")
         {
-            if($password == "Password")
+            if($username == "Admin" && $password == "Password")
             {
                 $_SESSION[$this->sessionLocation] = true;
             }
             else
             {
-                // NOTE implement better error message here.
                 throw new \Exception;
             }
         }
-        else
+        elseif ($token == "#123hfsdhTY7763d!dfsdfsjk32")
         {
-            // NOTE implement better error message here.
-            throw new \Exception;
+            // Automatic login.
         }
     }
 
