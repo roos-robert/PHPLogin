@@ -44,10 +44,19 @@ class LoginView {
         return strftime("%A, den %d %B år %Y. Klockan är [%X].");
     }
 
+    public function sessionCheck() {
+        if ($_SESSION["httpAgent"] != $_SERVER["HTTP_USER_AGENT"])
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     // Renders the page according to the user being logged in or not.
     public function showPage() {
 
-        if($this->model->getLoginStatus() === false)
+        if($this->model->getLoginStatus() === false || $this->sessionCheck() === false)
         {
             $username = isset($_POST["username"]) ? $_POST["username"] : "";
             return "

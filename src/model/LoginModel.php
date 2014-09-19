@@ -16,6 +16,7 @@ class LoginModel {
         {
             $_SESSION[$this->sessionLocation] = true;
             $_SESSION[$this->sessionUsername] = $username;
+            //$_SESSION["httpAgent"] = $_SERVER["HTTP_USER_AGENT"];
         }
         else
         {

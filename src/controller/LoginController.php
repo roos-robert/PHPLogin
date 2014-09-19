@@ -30,7 +30,6 @@ class LoginController {
     }
 
     public function checkActions() {
-
         if($this->model->getLoginStatus() == false && isset($_COOKIE['username']) && isset($_COOKIE['token']))
         {
             if ($this->autoLogin->autoLoginCreationDate($_COOKIE['username'], $_COOKIE['creationDate']) == true)
