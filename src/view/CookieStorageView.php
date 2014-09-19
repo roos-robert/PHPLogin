@@ -3,6 +3,22 @@
 namespace view;
 
 class CookieStorageView {
+    private $cookieUsername = "username";
+    private $cookieToken = "token";
+    private $cookieCreationDate = "creationDate";
+    private $cookieDatesFile = "CookieDates.txt";
+
+    public function getCookieUsername() {
+        return $this->cookieUsername;
+    }
+
+    public function getCookieToken() {
+        return $this->cookieToken;
+    }
+
+    public function getCookieCreationDate() {
+        return $this->cookieCreationDate;
+    }
 
     // Creating the cookies for automatic login.
     public function autoLoginCookie($username, $token) {
@@ -13,7 +29,7 @@ class CookieStorageView {
         setcookie('creationDate', $time, $time);
 
         // Saves the creation date of the cookies, to avoid manipulation.
-        $fp = fopen("CookieDates.txt", 'a');
+        $fp = fopen($this->cookieDatesFile, 'a');
         fwrite($fp, $username . $time . PHP_EOL);
     }
 
@@ -27,7 +43,7 @@ class CookieStorageView {
 
     // Function to check the creation date of the autoLogin cookie
     public function autoLoginCreationDate($username, $usersCookieCreationDate) {
-        $cookieDates = @file("CookieDates.txt");
+        $cookieDates = @file($this->cookieDatesFile);
         if ($cookieDates === FALSE) {
             return false;
         }

@@ -30,14 +30,14 @@ class LoginController {
     }
 
     public function checkActions() {
-        if($this->model->getLoginStatus() == false && isset($_COOKIE['username']) && isset($_COOKIE['token']))
+        if($this->model->getLoginStatus() == false && isset($_COOKIE[$this->autoLogin->getCookieUsername()]) && isset($_COOKIE[$this->autoLogin->getCookieToken()]))
         {
-            if ($this->autoLogin->autoLoginCreationDate($_COOKIE['username'], $_COOKIE['creationDate']) == true)
+            if ($this->autoLogin->autoLoginCreationDate($_COOKIE[$this->autoLogin->getCookieUsername()], $_COOKIE[$this->autoLogin->getCookieCreationDate()]) == true)
             {
                 try
                 {
                     // Checks the username and password in the model, to see that it exists.
-                    $this->model->doAutoLogin($_COOKIE['username'], $_COOKIE['token']);
+                    $this->model->doAutoLogin($_COOKIE[$this->autoLogin->getCookieUsername()], $_COOKIE[$this->autoLogin->getCookieToken()]);
                     $this->messages->save("Inloggning lyckades via cookies");
                     header('Location: index.php');
                     exit;
