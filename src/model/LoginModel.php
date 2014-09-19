@@ -37,19 +37,6 @@ class LoginModel {
         }
     }
 
-    public function retriveUsername() {
-        return $_SESSION[$this->sessionUsername];
-    }
-
-    // Do note that I'm just using fake data here. When working with real data this will be of much more use.
-    // Then a username can be sent in, the token located in the DB and returned.
-    public function retriveToken($username) {
-        //if($username == "Admin" && $this->getLoginStatus() == true)
-        //{
-            return "fsdfsf2uy39fy392f923oif23";
-        //}
-    }
-
     // When a user wants to logout, the session is returned to be null.
     public function doLogout() {
         $_SESSION[$this->sessionLocation] = null;
@@ -65,5 +52,19 @@ class LoginModel {
         {
             return true;
         }
+    }
+
+    // Function for retrieving the username of the user currently logged in.
+    public function retriveUsername() {
+        return $_SESSION[$this->sessionUsername];
+    }
+
+    // Do note that I'm just using fake data here. When working with real data this will be of much more use.
+    // Then a username can be sent in, the token located in the DB and returned.
+    public function retriveToken($username) {
+        //if($username == "Admin" && $this->getLoginStatus() == true)
+        //{
+            return "fsdfsf2uy39fy392f923oif23";
+        //}
     }
 }
