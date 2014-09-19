@@ -4,6 +4,7 @@ namespace model;
 
 class LoginModel {
     private $sessionLocation = "LoggedIn";
+    private $sessionUsername = "Username";
 
     public function __construct() {
         // NOTE - implement stuff.
@@ -16,15 +17,31 @@ class LoginModel {
             if($username == "Admin" && $password == "Password")
             {
                 $_SESSION[$this->sessionLocation] = true;
+                $_SESSION[$this->sessionUsername] = $username;
             }
             else
             {
                 throw new \Exception;
             }
         }
-        elseif ($token == "#123hfsdhTY7763d!dfsdfsjk32")
+        elseif ($username == "Admin" && $this->retriveToken($username) == $token)
         {
             // Automatic login.
+            $_SESSION[$this->sessionLocation] = true;
+            $_SESSION[$this->sessionUsername] = $username;
+        }
+    }
+
+    public function retriveUsername() {
+        return $_SESSION[$this->sessionUsername];
+    }
+
+    // Do note that I'm just using fake data here. When working with real data this will be of much more use.
+    // Then a username can be sent in, the token located in the DB and returned.
+    public function retriveToken($username) {
+        if($username == "Admin" && $this->getLoginStatus() == true)
+        {
+            return "fsdfsf2uy39fy392f923oif23";
         }
     }
 

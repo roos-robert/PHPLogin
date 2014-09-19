@@ -47,8 +47,6 @@ class LoginView {
     // Renders the page according to the user being logged in or not.
     public function showPage() {
 
-
-
         if($this->model->getLoginStatus() === false)
         {
             $username = isset($_POST["username"]) ? $_POST["username"] : "";
@@ -72,7 +70,7 @@ class LoginView {
         else
         {
             return "<h1>Välkommen!</h1>
-                    <h3>USERNAME är inloggad</h3>
+                    <h3>" . $this->model->retriveUsername() . " är inloggad</h3>
                     <p>" . $this->messages->load() . "</p>
                     <a href='?logout'>Logga ut</a>
                     <p>" . $this->getTime() . "</p>";
