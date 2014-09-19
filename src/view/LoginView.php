@@ -60,18 +60,19 @@ class LoginView {
         {
             $username = isset($_POST["username"]) ? $_POST["username"] : "";
             return "
-            <h1>Welcome, please login</h1>
+            <h1>PHPLogin</h1>
             <h3>Ej inloggad</h3>
             <form action='?login' method='post' name='loginForm'>
-                <fieldset><p>" . $this->messages->load() . "</p>
-                    <legend>Enter your username and password</legend>
-                    <label><strong>Username: </strong></label>
+                <fieldset>
+                    <legend>Login - Skriv in användarnamn och lösenord</legend><p>"
+                    . $this->messages->load() . "</p>
+                    <label><strong>Användarnamn: </strong></label>
                     <input type='text' name='username' value='$username' />
-                    <label><strong>Password: </strong></label>
+                    <label><strong>Lösenord: </strong></label>
                     <input type='password' name='password' value='' />
-                    <label><strong>Keep me logged in: </strong></label>
+                    <label><strong>Håll mig inloggad: </strong></label>
                     <input type='checkbox' name='stayLoggedIn' />
-                    <input type='submit' value='Login' name='loginButton' />
+                    <input type='submit' value='Logga in' name='loginButton' />
                  </fieldset>
             </form>
             <p>" . $this->getTime() . "</p>";
