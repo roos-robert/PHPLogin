@@ -30,6 +30,24 @@ class LoginController {
     }
 
     public function checkActions() {
+
+        if($this->model->getLoginStatus() == false && isset($_COOKIE['username']) && isset($_COOKIE['token']))
+        {
+            try
+            {
+                // Checks the username and password in the model, to see that it exists.
+                $this->model->doAutoLogin($_COOKIE['username'], $_COOKIE['token']);
+                $this->messages->save("Inloggning lyckades via cookies");
+                header('Location: index.php');
+                exit;
+            }
+            catch (\Exception $e)
+            {
+                $this->messages->save("Felaktig information i cookie");
+                $this->autoLogin->autoLoginCookieRemove();
+            }
+        }
+
         // If a user tries to login, the input is checked and validated.
         if($this->view->onClickLogin())
         {
@@ -52,7 +70,7 @@ class LoginController {
                     if(isset($_POST["stayLoggedIn"]))
                     {
                         $this->autoLogin->autoLoginCookie($this->getPostedUsername(), $this->model->retriveToken($this->getPostedUsername()));
-                        $this->messages->save("You have successfully logged in, also your credentials were saved!");
+                        $this->messages->save("Inloggning lyckades och vi kommer ihåg dig nästa gång");
                         header('Location: index.php');
                         exit;
                     }
